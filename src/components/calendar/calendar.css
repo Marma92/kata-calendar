@@ -1,0 +1,7 @@
+.calendar
+{
+  border: 1px dashed #797979;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
