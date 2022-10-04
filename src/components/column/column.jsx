@@ -7,11 +7,9 @@ import Hour from "../hour/hour";
 
 const Column = ({first, events}) => {
   const sortedEvents =  sortEventsByEndingLatest(events)
-  const hourSheet = getHourSheet(sortEventsByEndingLatest(events))
+  const hourSheet = getHourSheet(sortedEvents)
   const agrementedEvents = agrementEventsData(sortedEvents)
   const globalProportions = computeGlobalProportions(hourSheet)
-
-  console.log(agrementedEvents)
 
   return(first
   ?

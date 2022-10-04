@@ -73,7 +73,7 @@ function getOverlappingEvents(events, currentEventIndex) {
 }
 
 export const computeEventsWidth = (events, currentEventIndex) => {
-  let width = events[currentEventIndex].overlappingEvents.length + 1
+  let width = events[currentEventIndex].overlappingEvents.length +1
   if (
     events[currentEventIndex].overlappingEvents.length &&
     events[events[currentEventIndex].overlappingEvents[0]].overlappingEvents
@@ -97,9 +97,9 @@ export const computeEventsWidth = (events, currentEventIndex) => {
 export const computeEventPosition = (events, currentEventIndex) => {
   let position = 0
   for (let i = 0; i < events[currentEventIndex].overlappingEvents.length; i++) {
-    if (
-      typeof events[events[currentEventIndex].overlappingEvents[i]].position !== 'undefined' &&
-      events[events[currentEventIndex].overlappingEvents[i]].position < events[currentEventIndex].width - 1
+    if ( typeof(events[events[currentEventIndex].overlappingEvents[i]].position) !== 'undefined' &&
+      events[events[currentEventIndex].overlappingEvents[i]].position < events[currentEventIndex].width-1 &&
+      events[currentEventIndex].overlappingEvents[i] < currentEventIndex
     ) {
       position++
     }
@@ -116,13 +116,11 @@ function computeWidthRatio(events, currentEventIndex) {
 }
 
 export function agrementEventsData(events){
-  const result = []
   events.forEach((event, index) => {
     event.overlappingEvents = getOverlappingEvents(events, index)
     event.width = computeEventsWidth(events, index)
     event.position = computeEventPosition(events, index)
     event.widthRatio = computeWidthRatio(events, index)
-    result.push(event);
   });
-  return result
+  return events
 }
