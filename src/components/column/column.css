@@ -1,7 +1,7 @@
 .firstColumn
 {
   display: inline-block;
-  border: 1px dashed #797979;
+  border: 1px double #797979;
   height: 100%;
   width: 15%;
 }
@@ -9,7 +9,6 @@
 .column
 {
   display: inline-block;
-  border: 1px dashed #ff0000;
   height: 100%;
   width: 85%;
   contain: content;
