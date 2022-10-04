@@ -1,17 +1,17 @@
 import React from "react";
 import './column.css'
 import Event from "../event/event";
-import { computeEventPosition, computeEventsWidth, computeGlobalProportions, getHourSheet,  sortEventsByEndingLatest,  sortEventsByLatest, sortEventsByStartingLatest } from "../../helpers/data";
+import { agrementEventsData, computeEventTop, computeGlobalProportions, getHourSheet,  sortEventsByEndingLatest } from "../../helpers/data";
 import Hour from "../hour/hour";
 
 
 const Column = ({first, events}) => {
+  const sortedEvents =  sortEventsByEndingLatest(events)
   const hourSheet = getHourSheet(sortEventsByEndingLatest(events))
-  const sortedEvents = computeEventsWidth(sortEventsByStartingLatest(events))
-  console.log(sortedEvents)
-
+  const agrementedEvents = agrementEventsData(sortedEvents)
   const globalProportions = computeGlobalProportions(hourSheet)
 
+  console.log(agrementedEvents)
 
   return(first
   ?
@@ -22,17 +22,20 @@ const Column = ({first, events}) => {
   </div>
   :
   <div className="column">
-    {sortedEvents.map ((event) =>
-      <Event key={event.id}
+    {agrementedEvents.map ((event) =>
+        <Event key={event.id}
         id={event.id}
         duration={event.duration}
         start={event.start}
-        position={computeEventPosition(event, sortedEvents[0].start, globalProportions)}
+        top={computeEventTop(event, agrementedEvents[0].start, globalProportions)}
         proportion={computeGlobalProportions(hourSheet)}
-        width={100/event.cropFactor}
-        left={(event.leftFactor > 1)? 100/event.leftFactor : 0}
+        width={event.width}
+        widthRatio={event.widthRatio}
+        left={event.width === 1 ? 0 : (event.position / event.width)* 100}
+        right={event.width === 1 && 0}
       />
-    )}
+      )
+    }
   </div>)
 }
 

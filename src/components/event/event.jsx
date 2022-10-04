@@ -1,16 +1,17 @@
 import React from "react";
 import './event.css'
 
-const Event = ({duration, start, id, position, width, left, proportion}) => (
+const Event = ({duration, start, id, top, width, left, right, proportion, widthRatio}) => (
   <div
     className="event"
     style={{
       height: `${proportion/60*duration}%`,
-      width: `${width}%`,
+      width: `${widthRatio/width*100}%`,
       backgroundColor: '#f7f7d5',
       position: 'fixed',
-      top : `${position}%`,
+      top : `${top}%`,
       left: `${left}%`,
+      right: `${right}`
     }}
   >
     {id}  {start}  {duration}
