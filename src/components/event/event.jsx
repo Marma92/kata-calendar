@@ -7,8 +7,6 @@ const Event = ({duration, start, id, top, width, left, right, proportion, widthR
     style={{
       height: `${proportion/60*duration}%`,
       width: `${widthRatio/width*100}%`,
-      backgroundColor: '#f7f7d5',
-      position: 'fixed',
       top : `${top}%`,
       left: `${left}%`,
       right: `${right}`

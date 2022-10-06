@@ -1,7 +1,7 @@
 import React from "react";
+
 import './column.css'
 import Event from "../event/event";
-
 import Hour from "../hour/hour";
 import { agrementEventsData, computeEventTop, sortEventsByEndingLatest } from "../../helpers/events";
 import { computeGlobalProportions, getHourSheet } from "../../helpers/calendar";
