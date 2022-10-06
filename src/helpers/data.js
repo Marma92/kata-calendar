@@ -6,7 +6,7 @@ export const sortEventsByEndingLatest = (events) => {
   return events
 }
 
-export const calendarTotalDuration = (sortedEvents) => {
+const calendarTotalDuration = (sortedEvents) => {
   const start = new moment(sortedEvents[0].start, "HH:mm")
 
   const endTime = new moment(sortedEvents[sortedEvents.length-1].start, "HH:mm")
@@ -62,7 +62,7 @@ const isOverLapping = (event1, event2) => {
   return false
 }
 
-function getOverlappingEvents(events, currentEventIndex) {
+const getOverlappingEvents  = (events, currentEventIndex) => {
   let overlappingEvents = []
   for (let i = 0; i < events.length; i++) {
     if (i !== currentEventIndex && isOverLapping(events[currentEventIndex], events[i])) {
@@ -94,7 +94,7 @@ export const computeEventsWidth = (events, currentEventIndex) => {
   return width
 }
 
-export const computeEventPosition = (events, currentEventIndex) => {
+const computeEventPosition = (events, currentEventIndex) => {
   let position = 0
   for (let i = 0; i < events[currentEventIndex].overlappingEvents.length; i++) {
     if ( typeof(events[events[currentEventIndex].overlappingEvents[i]].position) !== 'undefined' &&
@@ -107,7 +107,7 @@ export const computeEventPosition = (events, currentEventIndex) => {
   return position
 }
 
-function computeWidthRatio(events, currentEventIndex) {
+const computeWidthRatio = (events, currentEventIndex) => {
   let widthRatio = 1
   if (events[currentEventIndex].overlappingEvents.length < events[currentEventIndex].width - 1) {
     widthRatio = events[currentEventIndex].width - events[currentEventIndex].overlappingEvents.length
@@ -115,7 +115,7 @@ function computeWidthRatio(events, currentEventIndex) {
   return widthRatio
 }
 
-export function agrementEventsData(events){
+export const agrementEventsData = (events) =>{
   events.forEach((event, index) => {
     event.overlappingEvents = getOverlappingEvents(events, index)
     event.width = computeEventsWidth(events, index)
