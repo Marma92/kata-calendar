@@ -12,7 +12,7 @@ const Event = ({duration, start, id, top, width, left, right, proportion, widthR
       right: `${right}`
     }}
   >
-    {id}
+    {id} {start} {duration}
   </div>
 );
 

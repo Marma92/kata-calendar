@@ -17,7 +17,7 @@ const Column = ({first, events}) => {
   ?
   <div className="firstColumn">
     {hourSheet.map((hour) =>
-      <Hour hour={hour} proportion={globalProportions}/>
+      <Hour key={hour} hour={hour} proportion={globalProportions}/>
     )}
   </div>
   :

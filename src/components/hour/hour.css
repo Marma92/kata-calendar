@@ -1,5 +1,5 @@
 .hour{
-  border-collapse: 1px solid rgb(105, 101, 101) ;
-  border: 1px solid rgb(105, 101, 101);
   background-color: #dff9f3;
+  border: 1px solid #767676;
+  box-sizing: border-box;
 }
