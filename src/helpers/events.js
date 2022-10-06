@@ -1,35 +1,10 @@
-import moment, { duration } from 'moment';
+import moment from 'moment';
+
 
 export const sortEventsByEndingLatest = (events) => {
   events.sort((a, b) => (a.duration < b.duration ? 1 : -1))
   events.sort((a, b) => (moment(a.start,  "HH:mm").isAfter(moment (b.start, "HH:mm"))  ? 1 : -1))
   return events
-}
-
-const calendarTotalDuration = (sortedEvents) => {
-  const start = new moment(sortedEvents[0].start, "HH:mm")
-
-  const endTime = new moment(sortedEvents[sortedEvents.length-1].start, "HH:mm")
-  endTime.add(sortedEvents[sortedEvents.length-1].duration, 'minutes')
-
-  duration = endTime.diff(start)
-  return moment.utc(duration).format("HH:mm")
-}
-
-export const getHourSheet = (sortedEvents) => {
-  const sheet = []
-  const start = parseInt(new moment(sortedEvents[0].start, "HH:mm").format("HH"))
-  const end = new moment(calendarTotalDuration(sortedEvents), "HH:mm").add(1, "hours")
-  const duration = parseInt(end.format("HH"))
-
-  for (let i = 0; i <= duration; i++){
-    sheet.push(start+i)
-  }
-  return sheet
-}
-
-export const computeGlobalProportions = (hourSheet) => {
-  return 100/hourSheet.length
 }
 
 export const computeEventTop = (event, scheduleOpening, globalProportions) => {
@@ -72,7 +47,7 @@ const getOverlappingEvents  = (events, currentEventIndex) => {
   return overlappingEvents
 }
 
-export const computeEventsWidth = (events, currentEventIndex) => {
+const computeEventsWidth = (events, currentEventIndex) => {
   let width = events[currentEventIndex].overlappingEvents.length +1
   if (
     events[currentEventIndex].overlappingEvents.length &&
